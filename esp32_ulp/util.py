@@ -5,7 +5,7 @@
 # SPDX-FileCopyrightText: 2018-2023, the micropython-esp32-ulp authors, see AUTHORS file.
 # SPDX-License-Identifier: MIT
 
-DEBUG = False
+DEBUG = True
 
 import gc
 import os

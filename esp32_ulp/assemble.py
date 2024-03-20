@@ -23,6 +23,7 @@ class SymbolTable:
         self._symbols = symbols
         self._bases = bases
         self._globals = globals
+        self._from_section, self._from_offset = None, None
 
     def set_bases(self, bases):
         self._bases = bases
@@ -294,6 +295,7 @@ class Assembler:
                             result = (result,)
 
                         for instruction in result:
+                            print("appending instruction", instruction)
                             self.append_section(instruction.to_bytes(4, 'little'), TEXT)
                         continue
                 raise ValueError('Unknown opcode or directive: %s' % opcode)
@@ -305,7 +307,10 @@ class Assembler:
         self.assembler_pass(lines)
         self.symbols.set_bases(self.compute_bases())
         garbage_collect('before pass2')
+        import gc
+        gc.disable()
         self.init(2)  # now we know all symbols and bases, do the real assembler pass, pass 2
         self.assembler_pass(lines)
         garbage_collect('after pass2')
+        gc.enable()
 

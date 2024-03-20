@@ -7,7 +7,7 @@
 
 from . import nocomment
 from .util import split_tokens
-from .definesdb import DefinesDB
+
 
 
 class RTC_Macros:
@@ -134,7 +134,7 @@ class Preprocessor:
                 return self._db
 
             def __exit__(self, type, value, traceback):
-                if isinstance(self._db, DefinesDB):
+                if not isinstance(self._db, dict):
                     self._db.close()
 
         if self._defines_db:
@@ -157,7 +157,9 @@ class Preprocessor:
         return result
 
 
-def preprocess(content, use_defines_db=True):
+def preprocess(content, use_defines_db=False):
     preprocessor = Preprocessor()
-    preprocessor.use_db(DefinesDB())
+    if use_defines_db:
+        from definesdb import DefinesDB
+        preprocessor.use_db(DefinesDB())
     return preprocessor.preprocess(content)
