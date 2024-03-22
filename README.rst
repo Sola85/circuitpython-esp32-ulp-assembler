@@ -1,11 +1,11 @@
-.. start-badges
+===================
+This project is WIP
+===================
 
-.. image:: ../../actions/workflows/run_tests.yaml/badge.svg
-   :height: 20px
-   :target: ../../actions/workflows/run_tests.yaml
-   :alt: Build Status
+The goal is to be able to write ESP-ULP Assembly code and run it from within circuit python.
+This requires `my branch <https://github.com/Sola85/circuitpython/tree/improve_espulp>`_ of the circuit python repo, since the  `espulp` module in default circuit python is basically not functional.
 
-.. end-badges
+The readme below is outdated.
 
 =====================
 micropython-esp32-ulp
