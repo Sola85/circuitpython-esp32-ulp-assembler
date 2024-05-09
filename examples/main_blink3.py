@@ -1,4 +1,6 @@
 """
+Adapted from https://github.com/joba-1/Blink-ULP/blob/master/main/ulp/blink.S
+
 A third version of the blink example. 
 
 Here we dont rely on the wakeup period to act as a delay. 
