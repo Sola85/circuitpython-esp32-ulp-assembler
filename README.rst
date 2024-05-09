@@ -74,9 +74,7 @@ See `docs/index.rst </docs/index.rst>`_.
 Requirements
 ------------
 
-The minimum supported version of MicroPython is v1.12. (For ESP32-S2 and S3
-devices, a version greater than v1.20 is required as versions before that
-did not enable the ``esp32.ULP`` class).
+`This branch of circuitpython: <https://github.com/Sola85/circuitpython/tree/improve_espulp>`_
 
 An ESP32 device is required to run the ULP machine code binary produced by
 micropython-esp32-ulp.
