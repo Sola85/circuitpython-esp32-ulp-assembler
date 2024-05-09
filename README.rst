@@ -5,7 +5,9 @@ This project is WIP
 The goal is to be able to write ESP-ULP Assembly code and run it from within circuit python.
 This requires `my branch <https://github.com/Sola85/circuitpython/tree/improve_espulp>`_ of the circuit python repo, since the  `espulp` module in default circuit python is basically not functional.
 
-The readme below is outdated.
+The examples are tested with on esp32s3.
+
+The documentation in `docs`_ is outdated and the tests do not work.
 
 =====================
 micropython-esp32-ulp
@@ -58,23 +60,7 @@ The following features are supported:
 Quick start
 -----------
 
-To get going run the following directly on the ESP32:
-
-.. code-block:: python
-
-   # IMPORTANT: Ensure the ESP32 is connected to a network with internet connectivity.
-
-   # Step 1: Install micropython-esp32-ulp (for MicroPython v1.20 or newer)
-   import mip
-   mip.install('github:micropython/micropython-esp32-ulp')
-
-   # Step 1: Install micropython-esp32-ulp (for MicroPython older than v1.20)
-   import upip
-   upip.install('micropython-esp32-ulp')
-
-   # Step 2: Run an example
-   # First, upload examples/counter.py to the ESP32.
-   import counter
+To get going, copy the esp32_ulp folder to the lib folder on the circuitpy drive. 
 
 The `examples/counter.py </examples/counter.py>`_ example shows how to assemble code,
 load and run the resulting binary and exchange data between the ULP and the main CPU.
