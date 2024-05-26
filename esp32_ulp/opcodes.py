@@ -9,8 +9,8 @@
 ESP32 ULP Co-Processor Instructions
 """
 
-from ucollections import namedtuple
-from uctypes import struct, addressof, LITTLE_ENDIAN, UINT32, BFUINT32, BF_POS, BF_LEN
+from collections import namedtuple
+#from uctypes import struct, addressof, LITTLE_ENDIAN, UINT32, BFUINT32, BF_POS, BF_LEN
 
 from .soc import *
 from .util import split_tokens, validate_expression
@@ -88,12 +88,27 @@ def make_ins_struct_def(layout):
         name, width = bitfield.split(':', 1)
         name = name.strip()
         width = int(width.strip())
-        struct_def[name] = BFUINT32 | pos << BF_POS | width << BF_LEN
+        struct_def[name] = (pos, width)
         pos += width
     if pos != 32:
         raise ValueError('make_ins: bit field widths must sum up to 32. [%s]' % layout)
-    struct_def['all'] = UINT32
     return struct_def
+
+class Instruction:
+
+    def __init__(self, struct_def):
+        self.struct_def = struct_def
+
+    def __getattr__(self, __name):
+        #print("getattr called", __name)
+
+        if __name != "all":
+            raise ValueError(f"Instruction does not have attribute {__name}!")
+        val = 0
+        for key in self.struct_def:
+            mask = self.__dict__[key] << self.struct_def[key][0]
+            val |= mask
+        return val
 
 
 def make_ins(layout):
@@ -101,8 +116,7 @@ def make_ins(layout):
     transform textual instruction layout description into a ready-to-use uctypes struct
     """
     struct_def = make_ins_struct_def(layout)
-    instruction = bytearray(4)
-    return struct(addressof(instruction), struct_def, LITTLE_ENDIAN)
+    return Instruction(struct_def)
 
 
 # instruction structure definitions
