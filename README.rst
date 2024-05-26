@@ -8,9 +8,9 @@ This requires `my branch <https://github.com/Sola85/circuitpython/tree/improve_e
 A fork of the original micropython-esp32-ulp assembler was necessary, since that project uses micropython packages that are not enabled in cirucitpython.
 This fork fixes this incompatibility.
 
-The examples are tested to work on esp32s3 and partially tested on an esp32.
+The examples provided in this fork are tested to work on esp32s3 and partially tested on an esp32.
 
-The documentation in `docs`_ is outdated and the tests, as well as the tools do not work.
+The documentation in `docs`_ is outdated and the tests, as well as the tools are not yet updated to circuitpython.
 
 =====================
 micropython-esp32-ulp
